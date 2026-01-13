@@ -411,6 +411,12 @@ async function resolveTicket(ticketTs: string, resolver: string, client: WebClie
 app.event('message', async ({ event, client, logger }) => {
     if (event.channel !== HELP_CHANNEL) return;
 
+    // Ignore specific user
+    if (event.user === 'U08AA6HA82F') {
+        logger.info(`Ignoring message from admin user ${event.user}`);
+        return;
+    }
+
     // but allow images uploads 
     if (event.subtype && event.subtype !== 'file_share') return;
 
